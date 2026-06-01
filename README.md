@@ -12,7 +12,7 @@ Code skill. It is published for **study and research** — clone it, read the
 cue-sheets, and rebuild the film yourself to see the whole stills-to-video
 pipeline end to end.
 
-> **Watch the finished chapter:** _<YouTube link — to be added>_
+> **Watch the finished chapter:** https://youtu.be/oBjQTPtJdLE
 > (~9 min 44 s: title → 4 clips → end card.)
 
 ---
@@ -120,6 +120,11 @@ cd clip04-tiger-is-flying && bash build_clip.sh && cd ..
 # 2) chapter  (opening → clips → ending, with music bed) → output/chapter.mp4
 bash build_chapter.sh
 ```
+
+> **Note:** build the four clips immediately before the chapter, and don't
+> delete `stage/` in between — the chapter's music-bed windowing reads each
+> clip's `stage/cues/*.mp4`. If they're missing, `build_chapter.sh` stops with
+> a clear message rather than misplacing the bed.
 
 `opening.mp4` / `ending.mp4` ship prebuilt in `assets/`. The generator that
 produced them is included under [`opening-kit/`](./opening-kit/) for reference.

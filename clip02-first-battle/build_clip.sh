@@ -278,7 +278,8 @@ build_cue3() {
   "$KIT/scripts/audio_attach.sh" "$C3/c3bc_captioned.mp4" "$A/narration/clip02_Cue3_B.mp3" "$C3/c3bc.mp4"
 
   # Sub D — LA Times slow-pan + spotlight reveal.
-  # See ~/.claude/projects/-Users-demai-work-FlyingTigers/memory for the recipe.
+  # (Slow document pan + feathered paragraph spotlight; see the kit's
+  #  text_spotlight.sh recipe for the single-box variant.)
   ffmpeg -y -loglevel error -i "$A/images/19411221LAtimes_US_flyers_Bag_Four_Jap_Planes.jpg" \
     -vf "scale=650:4838:flags=lanczos" "$C3/article_scaled.png"
 

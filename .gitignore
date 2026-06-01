@@ -9,3 +9,6 @@ stage/
 # OS noise
 .DS_Store
 *.swp
+
+# Local-only hand-off notes (never publish — contains author-local paths)
+HANDOVER.md

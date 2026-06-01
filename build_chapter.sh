@@ -21,6 +21,11 @@ set -euo pipefail
 # overlay per clip covers it. The music is seeked continuously across
 # windows (looped as needed) so it plays as one evolving piece that simply
 # ducks out for the video/SFX sections rather than restarting each time.
+#
+# NOTE: build all four clips immediately before the chapter, and do not delete
+# stage/ in between. The clip02/clip04 bed windows are computed from each clip's
+# stage/cues/*.mp4 (not just output/clip.mp4); if they're missing the build
+# stops with a clear message (see require_stage) instead of misplacing the bed.
 
 KIT="${KIT:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/../video-production-kit}"
 OUT="output"
@@ -39,6 +44,20 @@ mkdir -p "$OUT" "$TMP"
 dur() { ffprobe -v error -show_entries format=duration -of csv=p=0 "$1"; }
 fadd() { awk "BEGIN{printf \"%.3f\", $1}"; }   # eval a float expression
 
+# require_stage CLIP FILE — clip02/clip04 bed windows are computed from each
+# clip's per-cue stage artifacts (under the gitignored stage/, produced by
+# build_clip.sh) so the bed can duck out for archival-video / own-sound cues.
+# Fail loudly with an actionable message rather than silently misplacing the
+# bed if they were never built or were cleared (e.g. `rm -rf tmp stage output`).
+require_stage() {
+  local clip="$1" f="$2"
+  [ -f "$f" ] && return 0
+  echo "Error: $clip is missing a per-cue stage artifact: $f" >&2
+  echo "  The chapter music bed reads stage/cues/*.mp4. Re-run 'bash build_clip.sh'" >&2
+  echo "  in $clip just before building the chapter, and don't delete stage/ in between." >&2
+  exit 1
+}
+
 # bed_window_for CLIPDIR CLIP_DUR -> echoes "S E" (the still/narration span
 # to lay the music under, in clip-local seconds). Empty output = no bed.
 #
@@ -52,10 +71,14 @@ bed_window_for() {
       echo "0 $d" ;;
     clip02-*)
       # cue1 = Pearl Harbor video (skip); cue2+cue3 stills (bed to end)
+      require_stage "$clip" "$clip/stage/cues/cue1.mp4"
       local c1; c1=$(dur "$clip/stage/cues/cue1.mp4")
       echo "$(fadd "$c1 + 0.2") $d" ;;
     clip04-*)
       # cue1+2+3 stills (bed); cue4 video + cue5 own-sound (skip) -> bed front
+      require_stage "$clip" "$clip/stage/cues/cue1.mp4"
+      require_stage "$clip" "$clip/stage/cues/cue2.mp4"
+      require_stage "$clip" "$clip/stage/cues/cue3.mp4"
       local a b c
       a=$(dur "$clip/stage/cues/cue1.mp4")
       b=$(dur "$clip/stage/cues/cue2.mp4")
@@ -98,7 +121,10 @@ for clip_dir in clip*/; do
   [ -f "$src" ] || { echo "Warning: $src not found; run build_clip.sh in $clip first" >&2; continue; }
 
   d=$(dur "$src")
-  read -r S E < <(bed_window_for "$clip" "$d")
+  # Capture (not process-substitute) so a require_stage failure inside
+  # bed_window_for propagates here instead of being swallowed by the subshell.
+  win=$(bed_window_for "$clip" "$d") || exit 1
+  read -r S E <<<"$win"
   out="$TMP/${clip}_bed.mp4"
 
   if [ -z "${S:-}" ]; then

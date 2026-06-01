@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 # Metallic "飞虎队 / FLYING TIGERS" title plate on a 1920x1080 transparent canvas.
+import os
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
+def _font(env, default):
+    """Resolve a font path from an env var (macOS default); fail clearly if absent."""
+    p = os.environ.get(env, default)
+    if not os.path.exists(p):
+        raise SystemExit(f"opening-kit: font not found: {p} (override with {env}=/path/to/font)")
+    return p
+
 W, H = 1920, 1080
-CJK = "/System/Library/Fonts/STHeiti Medium.ttc"
-LAT = "/System/Library/Fonts/Supplemental/DIN Condensed Bold.ttf"
+CJK = _font("OPENING_FONT",     "/System/Library/Fonts/STHeiti Medium.ttc")
+LAT = _font("OPENING_LAT_FONT", "/System/Library/Fonts/Supplemental/DIN Condensed Bold.ttf")
 
 def vgrad(w, h, stops):
     """Vertical gradient. stops = [(pos0..1, (r,g,b)), ...]."""

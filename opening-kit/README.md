@@ -19,10 +19,10 @@ ending: 本章完 | 下一章 · AVG 的诞生  # ending card text ("|" splits t
 TITLE=$(grep -E '^title:'  chapterNN-.../outline.md | sed -E 's/^title:[[:space:]]*//')
 ENDING=$(grep -E '^ending:' chapterNN-.../outline.md | sed -E 's/^ending:[[:space:]]*//')
 
-bash opening/build_opening.sh "$TITLE"  /abs/path/chapterNN-.../assets/opening.mp4
-bash opening/build_ending.sh  "$ENDING" /abs/path/chapterNN-.../assets/ending.mp4
+bash opening-kit/build_opening.sh "$TITLE"  /abs/path/chapterNN-.../assets/opening.mp4
+bash opening-kit/build_ending.sh  "$ENDING" /abs/path/chapterNN-.../assets/ending.mp4
 ```
-Pass **absolute** output paths (the scripts `cd` into `opening/`).
+Pass **absolute** output paths (the scripts `cd` into `opening-kit/`).
 
 Optional 3rd/4th args: `MUSIC.mp3` and `MUSIC_START_SEC`
 (opening default slice start 9.0s — puts the track's drop on the ignite;

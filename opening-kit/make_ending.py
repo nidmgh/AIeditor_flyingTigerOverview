@@ -6,6 +6,7 @@
 # which only holds up at the huge 飞虎队 title size.
 # Supports one or two lines split by "|".
 # Usage: make_ending.py "本章完|下一章 · AVG 的诞生" out.png
+import os
 import sys
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
@@ -14,7 +15,9 @@ out  = sys.argv[2] if len(sys.argv) > 2 else "plates/_ending.png"
 lines = [s.strip() for s in text.split("|") if s.strip()]
 
 W, H = 1920, 1080
-FONT = "/System/Library/Fonts/STHeiti Medium.ttc"
+FONT = os.environ.get("OPENING_FONT", "/System/Library/Fonts/STHeiti Medium.ttc")
+if not os.path.exists(FONT):
+    raise SystemExit(f"opening-kit: font not found: {FONT} (override with OPENING_FONT=/path/to/font)")
 OFFWHITE = (242, 238, 228, 255)   # warm silver — matches the chapter title
 GLOW     = (150, 185, 235, 255)   # cool glow
 SPACE    = 10                     # letter spacing

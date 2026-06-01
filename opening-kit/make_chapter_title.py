@@ -2,6 +2,7 @@
 # Chapter-title plate: e.g. "第一章 · 飞虎出征" centered, sitting beneath the
 # FLYING TIGERS subtitle. Warm-silver text + thin amber flanking rules + glow.
 # Usage: make_chapter_title.py "第一章 · 飞虎出征" out.png [baseline_y]
+import os
 import sys
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
@@ -10,7 +11,9 @@ out  = sys.argv[2] if len(sys.argv) > 2 else "plates/chapter_title.png"
 ycen = int(sys.argv[3]) if len(sys.argv) > 3 else 880
 
 W, H = 1920, 1080
-FONT = "/System/Library/Fonts/STHeiti Medium.ttc"
+FONT = os.environ.get("OPENING_FONT", "/System/Library/Fonts/STHeiti Medium.ttc")
+if not os.path.exists(FONT):
+    raise SystemExit(f"opening-kit: font not found: {FONT} (override with OPENING_FONT=/path/to/font)")
 SIZE = 60
 SPACE = 12
 AMBER = (228, 196, 120)

@@ -57,8 +57,8 @@
 |---|---|
 | `clip0N/build_clip.sh` ×4 | 每片段一个：按 cue 分函数（`build_cue1`…）逐镜头渲染到 `stage/cues/`，再 `crossfade` 成 `output/clip.mp4`；支持 `CUE=n` 单独重建某 cue 以便审核 |
 | `build_chapter.sh` | 串接 `opening → clip01→04 → ending`；按规则给每个片段叠加**连续音乐床**（−18dB）：**静态画面 + 旁白**的段落铺底乐，**档案视频**（珍珠港、新闻片）或**自带音效**（cue5 防空/飞机声）的段落跳过；音乐跨段落连续 seek，不重头 |
-| `../opening/build_opening.sh` | 8 秒金属片头：暗场→「飞虎队 / FLYING TIGERS」点燃→末 3 秒淡入章节标题；可复用于各章 |
-| `../opening/build_ending.sh` | 片尾卡（「本章完 / 下一章…」），暖银文字风格 |
-| `../opening/make_*.py` | Pillow 生成金属标题 / 章节标题 / 片尾 / 星空等 plate |
+| `../opening-kit/build_opening.sh` | 8 秒金属片头：暗场→「飞虎队 / FLYING TIGERS」点燃→末 3 秒淡入章节标题；可复用于各章 |
+| `../opening-kit/build_ending.sh` | 片尾卡（「本章完 / 下一章…」），暖银文字风格 |
+| `../opening-kit/make_*.py` | Pillow 生成金属标题 / 章节标题 / 片尾 / 星空等 plate |
 
 **关键约定**：产物只进 `./tmp` 与 `./output`（不进 `/tmp`）；音轨时长 == 视频时长（保证 `crossfade` 不丢同步）；recipe 全部独立、位置参数 + 环境变量微调。

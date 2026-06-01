@@ -15,6 +15,37 @@ S="stage/cues"
 OUT="output"
 SAMPLE_RATE=44100
 
+# ---------------------------------------------------------------------------
+# Preflight — fail early with a clear message if anything is missing.
+# ---------------------------------------------------------------------------
+preflight() {
+  local missing=0
+  for cmd in ffmpeg ffprobe python3; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      echo "build_clip: missing dependency: $cmd" >&2
+      missing=1
+    fi
+  done
+  if ! python3 -c 'import PIL' >/dev/null 2>&1; then
+    echo "build_clip: missing python3 package: Pillow (PIL). Install with: pip3 install --user Pillow" >&2
+    missing=1
+  fi
+  if [[ ! -d "$KIT" ]]; then
+    echo "build_clip: video-production-kit not found at: $KIT" >&2
+    echo "  Override with: KIT=/path/to/video-production-kit bash build_clip.sh" >&2
+    missing=1
+  else
+    for s in ken_burns.sh audio_attach.sh caption_overlay.sh crossfade.sh subtitle_burn.sh; do
+      if [[ ! -f "$KIT/scripts/$s" ]]; then
+        echo "build_clip: kit is missing script: scripts/$s under $KIT" >&2
+        missing=1
+      fi
+    done
+  fi
+  [[ $missing -eq 0 ]] || exit 1
+}
+preflight
+
 mkdir -p "$T" "$S" "$OUT"
 
 # ---------------------------------------------------------------------------

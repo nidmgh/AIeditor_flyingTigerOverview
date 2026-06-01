@@ -8,7 +8,7 @@
 ## Meta
 
 <!-- Opening tag (last 3s of the shared opener) and ending card text.
-     Rendered by ../opening/build_opening.sh and ../opening/build_ending.sh.
+     Rendered by ../opening-kit/build_opening.sh and ../opening-kit/build_ending.sh.
      ending: one or two lines, split with "|". -->
 title: 第一章 · 飞虎出征
 ending: 本章完 | 下一章 · AVG 的诞生
@@ -28,7 +28,20 @@ music: `assets/music/music-bed.mp3`
 
 ## Outline
 
-<TODO: chapter beats / topics / pacing notes>
+The chapter runs ~9m44s and is paced as four beats, one per clip, framed by
+the shared opening/ending cards:
+
+1. **Sailing out (summer 1941).** Out the Golden Gate aboard the *Jagersfontein*;
+   meet pilot Robert Neale; the volunteers reach Burma, the A.V.G. forms, and
+   moves up to Kunming.
+2. **First blood (Dec 1941).** Pearl Harbor, Dec 7; Kunming under bombing; the
+   A.V.G.'s first battle over Kunming, Dec 20 — first seen in the local press.
+3. **A fallen hero (spring 1942).** Jack Newkirk of the 2nd Squadron "Panda
+   Bears," lost over Thailand near Chiang Mai, March 1942 — the name reaching
+   the home-front papers.
+4. **The name is born.** The "Flying Tigers" name surfaces in print (SMT, Feb
+   1942); the Disney/Hank Porter winged-tiger insignia; the A.V.G. disbands
+   Jul 3, 1942, and the lineage carries on (CATF → 14 AF → CACW).
 
 
 ## Clips
