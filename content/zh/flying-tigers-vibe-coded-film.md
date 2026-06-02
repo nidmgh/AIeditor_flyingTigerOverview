@@ -96,6 +96,14 @@ author: 迈哥
 
 共同的线索：现成工具要么不可编程，要么不是为 AI 端到端驱动而设计的。这道缺口，正是"剧本即源代码"这套思路要填上的。
 
+## 两个仓库
+
+这里的一切都是开源的——把两个仓库并排克隆下来，就能重建这部片子。
+
+**[video-production-kit](https://github.com/nidmgh/video-production-kit)** —— 可复用的引擎。**20 个独立的 shell recipe**（`ken_burns.sh`、`caption_overlay.sh`、`crossfade.sh`、`subtitle_burn.sh`、`text_spotlight.sh` 等等）、**7 篇参考文档**（端到端流水线、cue 格式规范、ffmpeg/zoompan 与文本渲染的深入解析），外加一个项目脚手架——全部是零依赖的 bash。可以当工具箱做零散的镜头，也可以用来搭起一整个纪录片系列。
+
+**[AIeditor · Flying Tigers](https://github.com/nidmgh/AIeditor_flyingTigerOverview)** —— 就是本文这个范例，也让你看到十分钟背后真实的复杂度：**41 张历史照片**、**7 段档案影像**（剪自 2 段新闻片）、**20 条旁白**、**2 段音乐床**，由 **7 个构建脚本**编排进 **4 个片段加片头片尾**——总共约 **67 次剪辑操作**。把它克隆到 kit 旁边，跑一遍构建，就能看着整部片子拼装出来。
+
 ## 写在最后
 
 值得老实说一句：什么**没有**变。

@@ -95,6 +95,14 @@ Fair question. The short answer: this isn't a new wheel for its own sake — it'
 
 The common thread: the existing tools are either not programmable or not built for an AI to drive end to end. That gap is what the script-as-source-code approach fills.
 
+## The Two Repos
+
+Everything here is open — clone both side by side and rebuild the film.
+
+**[video-production-kit](https://github.com/nidmgh/video-production-kit)** — the reusable engine. **20 standalone shell recipes** (`ken_burns.sh`, `caption_overlay.sh`, `crossfade.sh`, `subtitle_burn.sh`, `text_spotlight.sh`, and more), **7 reference docs** (the end-to-end pipeline, the cue-format spec, ffmpeg/zoompan and text-rendering deep-dives), plus a project bootstrapper — all dependency-free bash. Use it as a toolbox for one-off shots, or to scaffold a whole documentary series.
+
+**[AIeditor · Flying Tigers](https://github.com/nidmgh/AIeditor_flyingTigerOverview)** — this worked example, and a feel for the real complexity behind ten minutes: **41 historical photographs**, **7 archival clips** (cut from 2 newsreels), **20 narration tracks**, and **2 music beds**, composed across **4 clips plus opening and closing cards** by **7 build scripts** — roughly **67 edit operations** in all. Clone it next to the kit and run the builds to watch the whole thing assemble.
+
 ## The Takeaway
 
 It's worth being honest about what *didn't* change.
