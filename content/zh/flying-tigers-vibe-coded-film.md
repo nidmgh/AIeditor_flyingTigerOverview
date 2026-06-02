@@ -119,12 +119,13 @@ author: 迈哥
 **观看成片**（约 9 分 44 秒）：
 
 <figure>
-  <video controls preload="metadata" playsinline width="100%" style="border-radius:8px"
-         poster="/blog/assets/flying-tigers-chapter01.jpg">
-    <source src="/blog/assets/flying-tigers-chapter01-480p.mp4" type="video/mp4">
-    你的浏览器无法播放该视频——<a href="/blog/assets/flying-tigers-chapter01-480p.mp4">下载</a>，或<a href="https://youtu.be/oBjQTPtJdLE">在 YouTube 观看</a>。
-  </video>
-  <figcaption>《飞虎出征》——第一章，约 9 分 44 秒（480p；<a href="https://youtu.be/oBjQTPtJdLE">YouTube 高清</a>）。</figcaption>
+  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px">
+    <iframe src="https://www.youtube.com/embed/oBjQTPtJdLE" title="飞虎出征：第一章"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen loading="lazy"></iframe>
+  </div>
+  <figcaption>《飞虎出征》——第一章，约 9 分 44 秒（<a href="https://youtu.be/oBjQTPtJdLE">在 YouTube 观看</a>）。</figcaption>
 </figure>
 
 <p class="built-with"><strong>构建工具</strong>

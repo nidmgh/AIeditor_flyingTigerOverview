@@ -118,12 +118,13 @@ That's the trade worth making. Write. Compile. Ship — and spend the time you s
 **Watch the finished chapter** (~9m44s):
 
 <figure>
-  <video controls preload="metadata" playsinline width="100%" style="border-radius:8px"
-         poster="/blog/assets/flying-tigers-chapter01.jpg">
-    <source src="/blog/assets/flying-tigers-chapter01-480p.mp4" type="video/mp4">
-    Your browser can't play this video — <a href="/blog/assets/flying-tigers-chapter01-480p.mp4">download it</a>, or <a href="https://youtu.be/oBjQTPtJdLE">watch on YouTube</a>.
-  </video>
-  <figcaption>"Flying Tigers: Sailing Out" — Chapter 1, ~9m44s (480p; <a href="https://youtu.be/oBjQTPtJdLE">HD on YouTube</a>).</figcaption>
+  <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px">
+    <iframe src="https://www.youtube.com/embed/oBjQTPtJdLE" title="Flying Tigers: Sailing Out — Chapter 1"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen loading="lazy"></iframe>
+  </div>
+  <figcaption>"Flying Tigers: Sailing Out" — Chapter 1, ~9m44s (<a href="https://youtu.be/oBjQTPtJdLE">watch on YouTube</a>).</figcaption>
 </figure>
 
 <p class="built-with"><strong>Built with</strong>
