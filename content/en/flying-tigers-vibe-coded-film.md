@@ -7,15 +7,15 @@ slug: flying-tigers-vibe-coded-film
 author: MaiMai
 ---
 
-![Traditional video production takes three roles — storyteller, designer, editor; with this pipeline the writer keeps one seat and the machine does the rest.](/blog/assets/flying-tigers-hero_en.jpg)
+![Traditional video production takes three roles — storyteller, designer, editor; with this pipeline the creator owns the creativity and imagination, and the machine does the rest.](/blog/assets/flying-tigers-hero_en.jpg)
 
 *Vibe-coding a 10-minute WWII documentary — where the script is the source code.*
 
-## The Problem
+## The Problem to Solve
 
 A screenwriter's job ends at the script. Dialogue, narration, scene directions, the occasional "slow push on this photo" — that's the deliverable. Turning those pages into a finished film has always been someone else's craft: an editor, a timeline, an NLE, and days of dragging clips and keyframing pans.
 
-We wanted to delete that handoff — without asking the writer to change how they write.
+This project's goal is to optimize and automate the repetitive post-production work — to ask the writer to pour their creativity and imagination into finishing the script, and let AI compile that script into a finished video they're happy with.
 
 The script stays the single source of truth. In this project that's `script.md`, with `outline.md` above it: the writer lays out cues, narration, and on-screen text exactly as before, and reaches for industry-standard language whenever they need it — "Ken Burns effect," "lower-third caption," "crossfade." No new authoring tool, no editor to learn.
 
@@ -23,17 +23,17 @@ The machine handles the rest. Vibe coding plus a set of SKILLs translates that h
 
 It's the developer's loop applied to film. A Java programmer writes `.java`; a compiler turns it into something runnable. Here the writer's `outline.md` and `script.md` are the source; the project compiles them down to `.sh`; the shell runs and produces the video. Same shape — author in a human-readable source, compile, execute, ship.
 
-## What That Normally Takes
+## What the Traditional Way Costs
 
 Ten minutes of finished documentary is not a small thing. Industry rule-of-thumb pricing runs **$1,000 per finished minute at the rock-bottom end, $2,000–$4,000 as a realistic starting point, and $10,000+ for television-grade** — so a single ~10-minute chapter is a **$10k–$40k+** project before anyone calls it broadcast quality.
 
 An archival, stills-and-narration chapter like this one skips the film crew, but the budget just moves: into **research and archival licensing**, a **scriptwriter**, a **narrator**, and — the big one — a **motion-graphics editor** hand-animating every photograph. Editing runs **$75–$150 an hour**, and custom-animation passes routinely top **40 hours** — and ten minutes of Ken Burns moves, burned-in captions, spotlight reveals, and crossfades is a lot of custom animation.
 
-It also takes **three people** passing work down a line: the storyteller writes, the designer builds the visuals, the editor cuts. Every handoff is a place where intent leaks and the calendar slips into weeks.
+It also takes **three people** passing work down a line: the storyteller writes, the designer builds the visuals, the editor cuts. Every handoff carries a communication cost — a place where intent leaks and the calendar slips into weeks.
 
 <p class="sources"><em>Cost benchmarks (2025–2026): per-finished-minute documentary pricing from <a href="https://courses.desktop-documentaries.com/courses/documentary-going-rates-handbook">Desktop Documentaries</a>, <a href="https://windsky.com.au/how-much-does-a-documentary-cost/">Wind &amp; Sky Productions</a>, and <a href="https://www.academyvoices.com/blog/how-much-does-it-cost-to-make-a-documentary-a-complete-breakdown">Academy Voices</a>; editing and custom-animation rates from <a href="https://vidico.com/news/video-production-cost/">Vidico</a>.</em></p>
 
-## How You Use It
+## The New AI Way
 
 You write a cue, you ask for a build, you watch the clip. That's the loop.
 
@@ -73,7 +73,7 @@ Here is one cue, start to finish — a single shot described in `script.md`, the
   <figcaption>One cue from Clip 01 — the volunteers reach Burma and the A.V.G. forms. ~42&nbsp;s.</figcaption>
 </figure>
 
-## What It Buys You
+## The New AI Workflow
 
 That three-person line collapses to one. The writer keeps their seat; the designer's and editor's work is absorbed by the machine, which builds the visuals the moment the script asks for them. No handoffs — so nothing leaks in translation, and nothing waits in a queue.
 
@@ -87,9 +87,9 @@ Put rough numbers on it. This chapter is ~9m44s built from **41 photographs, 7 a
 
 Fair question. The short answer: this isn't a new wheel for its own sake — it's about building a *better* one, and making the building itself more efficient. I tried the existing tools first; each came close and stopped short.
 
-**Descript** — I liked the direction: edit the video by editing the text. But it blends a developer's and a screenwriter's mental models into one, and that mix didn't fit my purpose. Close, not quite.
+<img src="/blog/assets/logo-descript.png" alt="Descript" height="20" style="vertical-align:-4px"> **Descript** — I liked the direction: edit the video by editing the text. But it blends a developer's and a screenwriter's mental models into one, and that mix didn't fit my purpose. Close, not quite.
 
-<img src="/blog/assets/logo-capcut.svg" alt="" height="22" style="vertical-align:-5px"> **CapCut** — genuinely one of the best for social-media video, with a deep template library. That's also the point: it's built for mass output and quick turnaround, not for one-of-a-kind creative work. Its pre-AI design means the workflow still leans on a lot of manual human care — it can't be driven and streamlined by an agent, and there's nothing programmable to hook into.
+<img src="/blog/assets/logo-capcut.svg" alt="" height="22" style="vertical-align:-5px"> **CapCut** — genuinely one of the best for social-media video, with a deep template library. That's also the point: it's built for mass output and quick turnaround, not for one-of-a-kind creative work. Its pre-AI design means the workflow still leans on a lot of manual human care — it can't be driven and streamlined by an agent; its programmable entry points are still immature, and the weight of its existing design makes it hard to adapt at a fundamental level to where AI is heading in 2026.
 
 <img src="/blog/assets/logo-elevenlabs.svg" alt="" height="20" style="vertical-align:-4px"> <img src="/blog/assets/logo-fishaudio.svg" alt="" height="20" style="vertical-align:-4px"> **Text-to-speech (ElevenLabs vs. Fish Audio)** — both work, and both clear the bar of *acceptable*. I picked Fish Audio because it handled the Chinese narration better. Neither is easy to push all the way to convincingly human yet — but Fish Audio is actively building out a programmable API, which is exactly what matters when the whole point is an automatable pipeline, so it's the one I'd bet on.
 
@@ -107,7 +107,7 @@ Everything here is open — clone both side by side and rebuild the film.
 
 It's worth being honest about what *didn't* change.
 
-The history is still hard-won. A documentary that claims to be accurate earns it the old way: finding the right archival photo, dating the newsreel, confirming the man in the frame is who the caption says he is. AI shortens the mechanical parts — fetching footage, pulling auto-captions as a translation source, drafting a search — but the judgment of what is true, and what is worth showing, stays human. Vibe coding compiles the script faster; it does not do the research for you.
+This project's example is a historical documentary. A high-quality documentary still earns its accuracy the old way: finding the right archival photo, dating the newsreel, confirming the man in the frame is who the caption says he is. AI shortens the mechanical parts — fetching footage, pulling auto-captions as a translation source, drafting a search — but the judgment of what is true, and what is worth showing, stays human. Vibe coding compiles the script faster; it does not do the research for you — the kind that takes invention and depends on a human flash of insight.
 
 And the creative core is untouched — because it's the whole point. The pacing of a reveal, the narration line that lands, the choice to hold on a face for one more beat: that is the screenwriter's craft, and it is exactly what this pipeline is built to *protect*. The machine took over the parts a writer never wanted — the keyframing, the re-exports, the handoffs — so the parts only a human can do get all the attention. Top-quality work was never bottlenecked on the editing. It was bottlenecked on the storytelling, and it still is.
 
