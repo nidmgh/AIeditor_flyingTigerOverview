@@ -1,7 +1,7 @@
 ---
 title: "Write. Compile. Ship — For Video"
 date: 2026-06-01
-published: false
+published: true
 lang: en
 slug: flying-tigers-vibe-coded-film
 author: MaiMai
@@ -45,16 +45,10 @@ No timeline, no keyframes, no round-tripping assets through a designer. The writ
 
 Under the hood it's a bottom-up pipeline — shots compose into scenes, scenes into the film:
 
-```
-  outline.md + script.md          ← you write (the source)
-          |
-          |   vibe coding: Claude Code generates the build scripts
-          v
-   cue   ──►   clip   ──►   chapter   ──►   chapter.mp4
- (one shot)  (a scene)    (the film)         (ship)
-  ken_burns   crossfade    + music bed
-  caption     narration    + opening/ending
-```
+<figure>
+  <img src="/blog/assets/flying-tigers-pipeline_en.jpg" alt="Bottom-up build pipeline: you write outline.md and script.md; vibe coding (Claude Code) generates the build scripts; shots compose into segments, segments into the chapter, and the chapter ships as chapter.mp4 — with a music bed and opening/ending.">
+  <figcaption>The bottom-up build pipeline — source files compile up through shots, segments, and the chapter into the finished <code>chapter.mp4</code>.</figcaption>
+</figure>
 
 End to end, the writer touches three things and the machine handles the rest:
 
@@ -93,11 +87,13 @@ Fair question. The short answer: this isn't a new wheel for its own sake — it'
 
 <img src="/blog/assets/logo-elevenlabs.svg" alt="" height="20" style="vertical-align:-4px"> <img src="/blog/assets/logo-fishaudio.svg" alt="" height="20" style="vertical-align:-4px"> **Text-to-speech (ElevenLabs vs. Fish Audio)** — both work, and both clear the bar of *acceptable*. I picked Fish Audio because it handled the Chinese narration better. Neither is easy to push all the way to convincingly human yet — but Fish Audio is actively building out a programmable API, which is exactly what matters when the whole point is an automatable pipeline, so it's the one I'd bet on.
 
+**Claude Design** — Anthropic's brand-new visual tool ([research preview](https://www.anthropic.com/news/claude-design-anthropic-labs) from Anthropic Labs): describe what you want and it generates designs, prototypes, slides, and marketing collateral. I tried it the day it launched, and the first demo genuinely wowed me. But Anthropic is candid that this is still the "research lab" stage — and that's exactly how it feels: the features are thin, the experience rough, and for a pipeline like mine it doesn't yet clear even the basic bar. The most AI-native of the bunch, and still the earliest. Exciting direction; not ready.
+
 The common thread: the existing tools are either not programmable or not built for an AI to drive end to end. That gap is what the script-as-source-code approach fills.
 
-## The Two Repos
+## Open Source
 
-Everything here is open — clone both side by side and rebuild the film.
+Everything here is open source — if you're curious, clone the repos below and rebuild the film.
 
 **[video-production-kit](https://github.com/nidmgh/video-production-kit)** — the reusable engine. **20 standalone shell recipes** (`ken_burns.sh`, `caption_overlay.sh`, `crossfade.sh`, `subtitle_burn.sh`, `text_spotlight.sh`, and more), **7 reference docs** (the end-to-end pipeline, the cue-format spec, ffmpeg/zoompan and text-rendering deep-dives), plus a project bootstrapper — all dependency-free bash. Use it as a toolbox for one-off shots, or to scaffold a whole documentary series.
 

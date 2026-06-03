@@ -1,7 +1,7 @@
 ---
 title: "写作 · 编译 · 交付 —— 为视频而生"
 date: 2026-06-01
-published: false
+published: true
 lang: zh
 slug: flying-tigers-vibe-coded-film
 translated: true
@@ -26,7 +26,7 @@ author: 迈哥
 
 ## 传统方式的投入成本
 
-十分钟的成片可不是小事。行业经验法则的报价：最低端约**每分钟 1,000 美元**，比较现实的起步价是**每分钟 2,000–4,000 美元**，电视级则要 **10,000 美元以上**——所以单是一章约 10 分钟的片子，在还谈不上"广播级"之前，就已经是一个 **1 万到 4 万美元以上**的项目。
+十分钟的成片可不是小事。行业经验法则的报价：最低端约**每分钟 1,000 美元**，比较现实的起步价是**每分钟 2,000–4,000 美元**，电视级则要 **10,000 美元以上**——所以单是一章约 10 分钟的片子，在还谈不上"专业级视频"之前，就已经是一个 **1 万到 4 万美元以上**的项目。
 
 像本章这样以档案照片加旁白为主的片子省掉了摄制组，但预算只是换了个地方：花在**资料研究与档案授权**、一位**编剧**、一位**配音**，以及——重头戏——一位**动态图形剪辑师**，逐张照片做动画。剪辑通常**每小时 75–150 美元**，定制动画往往**超过 40 小时**——而十分钟的 Ken Burns 运镜、烧录字幕、聚光揭示和交叉淡入淡出，是一大堆定制动画。
 
@@ -36,7 +36,7 @@ author: 迈哥
 
 ## 新的AI方式
 
-写一个 cue，让它构建，看片段。就这么个循环。
+写一个分镜条目(cue)，让它构建，看片段。就这么个循环。
 
 `script.md` 里的一个 cue，读起来就像编剧本来就会在旁边记下的东西：要出现的照片或影像、旁白台词、画面上的字幕，以及运动方式——"Ken Burns 向大桥推近""下三分之一字幕：1941 年夏 · 旧金山""交叉淡入下一镜"。大白话，加上编剧本就熟悉的行业术语。
 
@@ -46,16 +46,10 @@ author: 迈哥
 
 底层是一条自底向上的流水线——镜头组成片段，片段组成成片：
 
-```
-  outline.md + script.md          ← 你来写（源文件）
-          |
-          |   vibe coding：Claude Code 生成构建脚本
-          v
-   cue   ──►   clip   ──►   chapter   ──►   chapter.mp4
- （单镜头） （一个片段）   （整部）           （交付）
-  ken_burns   crossfade    + 音乐床
-  字幕         旁白          + 片头/片尾
-```
+<figure>
+  <img src="/blog/assets/flying-tigers-pipeline_zh.jpg" alt="自底向上的构建流水线：你写 outline.md 和 script.md，vibe coding（Claude Code）生成构建脚本；镜头组成片段，片段组成章节，章节交付为 chapter.mp4——配上音乐床与片头/片尾。">
+  <figcaption>自底向上的构建流水线——源文件向上编译，经镜头、片段、章节，汇成成片 <code>chapter.mp4</code>。</figcaption>
+</figure>
 
 从头到尾，创作者只碰三样东西，其余交给机器：
 
@@ -94,11 +88,13 @@ author: 迈哥
 
 <img src="/blog/assets/logo-elevenlabs.svg" alt="" height="20" style="vertical-align:-4px"> <img src="/blog/assets/logo-fishaudio.svg" alt="" height="20" style="vertical-align:-4px"> **文字转语音（ElevenLabs 对比 Fish Audio）** —— 两个都能用，也都达到了"可接受"的水准。我选 Fish Audio，因为它把中文旁白处理得更好。两者目前都还难以推到"足够像真人"；但 Fish Audio 正在积极完善它的可编程 API——当整件事的重点就是一条可自动化的流水线时，这一点恰恰最要紧，所以我更看好它。
 
+**Claude Design** —— Anthropic 刚发布的可视化创作工具（[research preview](https://www.anthropic.com/news/claude-design-anthropic-labs)，隶属 Anthropic Labs）：把需求说给它，它就生成设计稿、原型、幻灯片与宣传物料。我第一时间就上手试了——初见 demo 确实惊艳。但 Anthropic 自己也坦言，它还停在"research lab"阶段；用下来正是这种感觉：功能简陋、打磨不足，对我这条流水线而言，现阶段连最基本的要求都还谈不上满足。它是这几款里最"AI 原生"的一个，却也最早期——方向让人期待，但还没到能用的时候。
+
 共同的线索：现成工具要么不可编程，要么不是为 AI 端到端驱动而设计的。这道缺口，正是"剧本即源代码"这套思路要填上的。
 
-## 两个仓库
+## 开源库
 
-这里的一切都是开源的——把两个仓库并排克隆下来，就能重建这部片子。
+这里的一切都是开源的——有兴趣的话可以把如下github repo克隆下来，重建这部片子。
 
 **[video-production-kit](https://github.com/nidmgh/video-production-kit)** —— 可复用的引擎。**20 个独立的 shell recipe**（`ken_burns.sh`、`caption_overlay.sh`、`crossfade.sh`、`subtitle_burn.sh`、`text_spotlight.sh` 等等）、**7 篇参考文档**（端到端流水线、cue 格式规范、ffmpeg/zoompan 与文本渲染的深入解析），外加一个项目脚手架——全部是零依赖的 bash。可以当工具箱做零散的镜头，也可以用来搭起一整个纪录片系列。
 
