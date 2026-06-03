@@ -13,6 +13,6 @@ stage/
 # Local-only hand-off notes (never publish — contains author-local paths)
 HANDOVER.md
 
-# Blog media — web-optimized video re-encodes, staged locally and deployed via
-# the blog repo's assets/. Too large for git history (tens of MB each).
-blog-assets/
+# Blog media is tracked here (heroes, pipeline diagrams, logos, web clips),
+# except the full-resolution chapter render which is too large for git history.
+blog-assets/flying-tigers-chapter01.mp4
